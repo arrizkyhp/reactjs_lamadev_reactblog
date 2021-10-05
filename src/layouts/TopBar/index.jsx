@@ -1,28 +1,28 @@
 import { Link } from "react-router-dom";
 import "./topbar.css"
 
-export default function TopBar() {
-  const user = false;
+export default function TopBar( {user} ) {
+
     return (
       <nav>
         <div className="nav__left">
-          <i className="nav__icon fab fa-facebook-square"></i>
-          <i className="nav__icon fab fa-twitter-square"></i>
-          <i className="nav__icon fab fa-pinterest-square"></i>
-          <i className="nav__icon fab fa-instagram-square"></i>
+          <i className="nav__icon fab fa-facebook-square" data-testid="icon-social"></i>
+          <i className="nav__icon fab fa-twitter-square" data-testid="icon-social"></i>
+          <i className="nav__icon fab fa-pinterest-square" data-testid="icon-social"></i>
+          <i className="nav__icon fab fa-instagram-square" data-testid="icon-social"></i>
         </div>
         <div className="nav__center">
           <ul className="nav__list">
             <li className="nav__list__item">
-              <Link to="/">Home</Link>
+              <Link to="/">home</Link>
             </li>
             <li className="nav__list__item">
-              <Link to="/">About</Link>
+              <Link to="/">about</Link>
             </li>
             <li className="nav__list__item">
               <Link to="/write">write</Link>
             </li>
-            <li className="nav__list__item">{user && "Logout"}</li>
+            <li className="nav__list__item">{user && "logout"}</li>
           </ul>
         </div>
         <div className="nav__right">
@@ -31,15 +31,19 @@ export default function TopBar() {
           ) : (
             <ul className="nav__list">
               <li className="nav__list__item">
-              <Link to="/register">Sign Up</Link>
+                <Link to="/register">sign up</Link>
               </li>
               <li className="nav__list__item">
-              <Link to="/login">Sign In</Link>
+                <Link to="/login">sign in</Link>
               </li>
             </ul>
           )}
-          <i className="nav__iconSearch fas fa-search"></i>
+          <i className="nav__iconSearch fas fa-search" data-testid="icon-search"></i>
         </div>
       </nav>
     );
+}
+
+TopBar.defaultProps = {
+  user: false,
 }
