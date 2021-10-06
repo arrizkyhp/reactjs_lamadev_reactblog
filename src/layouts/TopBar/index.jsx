@@ -45,5 +45,5 @@ export default function TopBar( {user} ) {
 }
 
 TopBar.defaultProps = {
-  user: false,
+  user: true,
 }

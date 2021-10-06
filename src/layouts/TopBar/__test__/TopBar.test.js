@@ -1,6 +1,8 @@
 import { BrowserRouter } from 'react-router-dom';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import TopBar from '..';
+
+
 
 const MockTopBarLogin = () => {
     return (
@@ -17,6 +19,7 @@ const MockTopBarNotLogin = () => {
     </BrowserRouter>
   );
 };
+
 
 describe("default", () => {
         beforeEach(() => {
@@ -51,8 +54,8 @@ describe("default", () => {
 describe("Not Login", () => {
     beforeEach(() => {
         render(<MockTopBarNotLogin />);
-
     })
+
 
      test("should not render logout menu", () => {
        const logout = screen.queryByText("logout");
