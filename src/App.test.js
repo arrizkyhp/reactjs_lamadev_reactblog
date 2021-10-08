@@ -4,9 +4,9 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import App from "App";
 
-describe("should render correct link", () => {
+describe("should render correct link",  () => {
 
-    test("should render home page", () => {
+    test("should render home page", async () => {
       const history = createMemoryHistory();
       render(
         <Router history={history}>
@@ -19,23 +19,9 @@ describe("should render correct link", () => {
       const leftClick = { button: 0 };
       fireEvent.click(linkElementHome, leftClick);
 
-      expect(screen.getByText(/blog/i)).toBeInTheDocument();
+      expect(await screen.getByText(/blog/i)).toBeInTheDocument();
     });
 
-     test("should render write page", () => {
-       const history = createMemoryHistory();
-       render(
-         <Router history={history}>
-           <App />
-         </Router>
-       );
 
-       const linkElementHome = screen.getByRole("link", { name: "write" });
-
-       const leftClick = { button: 0 };
-       fireEvent.click(linkElementHome, leftClick);
-
-       expect(screen.getByText(/publish/i)).toBeInTheDocument();
-     });
 
 })

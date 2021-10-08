@@ -7,7 +7,7 @@ export default function Header() {
           <span className="title__small">React & Node</span>
           <span className="title__large">Blog</span>
         </div>
-        <img src="https://picsum.photos/id/101/2000" alt="" className="header__image" />
+        <img src="https://picsum.photos/id/101/2000" alt="header" className="header__image" />
       </header>
     );
 }

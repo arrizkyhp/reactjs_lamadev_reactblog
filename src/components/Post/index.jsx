@@ -1,21 +1,32 @@
 import './post.css'
+import ReactTimeAgo from "react-time-ago";
+import { Link } from 'react-router-dom';
 
-export default function Post() {
+export default function Post({ post }) {
+
     return (
       <article className="post">
-        <img className="post__image" src="https://picsum.photos/id/1015/400" alt="article" />
+        {post.photo ? <img className="post__image" src={post.photo} alt="article" /> : <img className="post__image" src="https://picsum.photos/id/1015/400" alt="article" />}
         <div className="post__info">
-            <div className="post__info__categories">
-                <div className="info__category">Music</div>
-                <div className="info__category">Life</div>
-            </div>
-            <h2 className="post__title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-            <hr />
-            <span className="post__date">1 hour ago</span>
+          <div className="post__info__categories">
+            {post.categories.map((category, index) => {
+              return (
+                <div className="info__category" key={`category-${index}`}>
+                  {category}
+                </div>
+              );
+            })}
+          </div>
+          <Link to={`/post/${post._id}`}>
+            <h2 className="post__title">{post.title}</h2>
+          </Link>
+          <hr />
+          <span className="post__date">
+            {/* {new Date(post.createdAt).toDateString()} */}
+            <ReactTimeAgo date={Date.parse(post.createdAt)} locale="en-US" />
+          </span>
         </div>
-        <p className="post__description">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi dicta excepturi consequatur, est facere doloribus tempora saepe ipsum nisi animi quisquam aperiam minus nihil neque eaque, at ducimus iste. Est dolor autem ipsam adipisci, provident voluptate! Numquam vitae fuga neque eveniet aspernatur nulla aut rerum, magnam eos molestias, omnis ipsum quisquam quas quidem repudiandae autem voluptatum hic cupiditate nostrum sapiente debitis odio. Est optio tempora, temporibus nesciunt ad nam aut, iusto consequatur repudiandae dolore deleniti ullam, nulla corrupti quod repellendus?
-        </p>
+        <p className="post__description">{post.description}</p>
       </article>
     );
 }
